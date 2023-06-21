@@ -1,0 +1,15 @@
+{% extends 'member/base.html' %}
+
+{% block content %}
+  <h2>홈</h2>
+  {% if user.is_authenticated %}
+    <p>사용자명: {{ user.username }}</p>
+    {% if profile %}
+      <p>프로필 사진: <img src="{{ profile.profile_picture.url }}" alt="프로필 사진"></p>
+    {% else %}
+      <p>프로필 정보가 없습니다.</p>
+    {% endif %}
+  {% else %}
+    <p>로그인이 필요합니다.</p>
+  {% endif %}
+{% endblock %}
