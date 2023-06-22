@@ -1,20 +1,14 @@
+from django.contrib.auth import views as auth_views
 from django.urls import path
 from . import views
 
 
-# localhost:8000/member
-# 라는 요청이오면 여기까지온다.
-
 
 urlpatterns = [
-
-    path('', views.index),
-
+    path('', index, name='index'),
+    path('index/', index, name='index-page'),
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
-
-    path('home/', views.home),
-
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('home/', views.home, name='home'),
 ]
-
-
