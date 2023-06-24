@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,19 +28,34 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Django Crispy Forms settings
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 # Application definition
 
 INSTALLED_APPS = [
     "chkDogImg.apps.ChkdogimgConfig",
     'member',
-    'board.apps.BoardConfig',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
     "django.contrib.admin",
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'blog',
+    'single_page',
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'markdownx',
+
 ]
 
 MIDDLEWARE = [
@@ -60,7 +73,7 @@ ROOT_URLCONF = 'loverdog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],# memberApp tmeplates도 BASE_DIR밑 templates에 옮길 것
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,6 +137,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
