@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'markdownx',
+    'dogbreed',
 
 ]
 
@@ -118,6 +119,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# settings.py
+
+# Other settings...
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '589242080107-7cnu38dhcn7qnfr3ahs82rvrsdma8l00.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email', 'profile']  # Optional: Specify additional scopes
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+    'access_type': 'offline'  # Optional: Specify additional authentication arguments
+}
+
+# Other settings...
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -150,3 +167,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TRAINED_MODEL_PATH = 'path_to_save_trained_model'
