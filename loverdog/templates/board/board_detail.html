@@ -1,0 +1,11 @@
+<h1>{{ board_detail.subject }}</h1>
+
+<div>
+    {{ board_detail.content }}
+</div>
+
+<form action="{% url 'board:comment_create' board.id %}" method="post">
+    {% crsf_token %}
+    <textarea name="content" id="content" rows="15"></textarea>
+    <input type="submit" value="댓글 달기">
+</form>
