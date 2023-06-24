@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,19 +28,35 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Django Crispy Forms settings
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 # Application definition
 
 INSTALLED_APPS = [
     "chkDogImg.apps.ChkdogimgConfig",
     'member',
-    'board.apps.BoardConfig',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
     "django.contrib.admin",
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'blog',
+    'single_page',
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'markdownx',
+    'dogbreed',
+
 ]
 
 MIDDLEWARE = [
@@ -60,7 +74,7 @@ ROOT_URLCONF = 'loverdog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],# memberApp tmeplates도 BASE_DIR밑 templates에 옮길 것
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,6 +119,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# settings.py
+
+# Other settings...
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '589242080107-7cnu38dhcn7qnfr3ahs82rvrsdma8l00.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email', 'profile']  # Optional: Specify additional scopes
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+    'access_type': 'offline'  # Optional: Specify additional authentication arguments
+}
+
+# Other settings...
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -125,6 +155,11 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
 
@@ -132,3 +167,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TRAINED_MODEL_PATH = 'path_to_save_trained_model'
