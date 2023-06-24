@@ -1,0 +1,8 @@
+<h1>Predicted Dog Breeds</h1>
+<ul>
+  {% for prediction in predictions %}
+    <li>{{ prediction.predicted_breed }}</li>
+  {% empty %}
+    <li>No predictions available</li>
+  {% endfor %}
+</ul>
